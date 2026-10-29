@@ -11,7 +11,7 @@ public class Show {
 		this.currentEpisode = null;
 	}
 
-	// เพิ่มรับค่า seasonNumber
+	// Include the season number.
 	public void addEpisode(int seasonNumber, int episodeNumber, String title, int duration) {
 		Episode newEp = new Episode(seasonNumber, episodeNumber, title, duration);
 		episodeList.addEpisode(newEp);
@@ -23,34 +23,34 @@ public class Show {
 	public void playNextEpisode() {
 		if (currentEpisode != null && currentEpisode.next != null) {
 			currentEpisode = currentEpisode.next;
-			System.out.println("\n>> [System] ข้ามไปเล่นตอนถัดไป: S" + currentEpisode.seasonNumber + " EP"
+			System.out.println("\n>> [System] Playing the next episode: S" + currentEpisode.seasonNumber + " EP"
 					+ currentEpisode.episodeNumber);
 		} else {
-			System.out.println("\n>> [System] แจ้งเตือน: นี่คือตอนสุดท้ายของซีรีส์เรื่องนี้แล้ว! (End of List)");
+			System.out.println("\n>> [System] Notice: This is the last episode of the series! (End of List)");
 		}
 	}
 
 	public void playPreviousEpisode() {
 		if (currentEpisode != null && currentEpisode.previous != null) {
 			currentEpisode = currentEpisode.previous;
-			System.out.println("\n>> [System] ย้อนกลับไปตอนก่อนหน้า: S" + currentEpisode.seasonNumber + " EP"
+			System.out.println("\n>> [System] Going back to the previous episode: S" + currentEpisode.seasonNumber + " EP"
 					+ currentEpisode.episodeNumber);
 		} else {
-			System.out.println("\n>> [System] แจ้งเตือน: นี่คือตอนแรกสุดของซีรีส์ ไม่สามารถย้อนกลับได้!");
+			System.out.println("\n>> [System] Notice: This is the first episode; cannot go back any further!");
 		}
 	}
 
-	// ค้นหาโดยระบุทั้ง Season และ Episode
+	// Find an episode by season and episode number.
 	public void selectEpisode(int seasonNum, int epNum) {
 		Episode temp = episodeList.head;
 		while (temp != null) {
 			if (temp.seasonNumber == seasonNum && temp.episodeNumber == epNum) {
 				currentEpisode = temp;
-				System.out.println("\n>> [System] เลือกเล่น S" + seasonNum + " EP" + epNum + " สำเร็จ");
+				System.out.println("\n>> [System] Successfully selected S" + seasonNum + " EP" + epNum);
 				return;
 			}
 			temp = temp.next;
 		}
-		System.out.println("\n>> [System] ข้อผิดพลาด: ไม่พบ S" + seasonNum + " EP" + epNum + " ในระบบ");
+		System.out.println("\n>> [System] Error: S" + seasonNum + " EP" + epNum + " was not found");
 	}
 }

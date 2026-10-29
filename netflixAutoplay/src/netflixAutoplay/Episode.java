@@ -1,7 +1,7 @@
 package netflixAutoplay;
 
 public class Episode {
-	int seasonNumber; // เพิ่มซีซัน
+	int seasonNumber; // Season number
 	int episodeNumber;
 	String title;
 	int duration;
