@@ -1,44 +1,49 @@
 # 🎬 Netflix Console Edition: Next Episode & Auto-Play System
 
-A console-based Netflix simulation project built to demonstrate the practical application of **Data Structures and Algorithms (DSA)** concepts, specifically focusing on **Doubly Linked Lists** for episode navigation and **Queues** for watch history management.
+A console-based Netflix simulation project built to demonstrate the practical application of **Data Structures and Algorithms (DSA)** concepts, specifically focusing on **Doubly Linked Lists** for episode navigation and **ArrayLists** for managing the available shows.
 
 ---
 
 ## 🏗️ 1. Suitable Data Structures
 
-* **Doubly Linked List:** Ideal for representing a TV series structure where each node represents an "Episode."
+* **Doubly Linked List:** Used to represent the episodes in a TV series, where each node represents an "Episode."
   * `next` points to the following episode.
-  * `prev` points to the previous episode.
-  * Enables $O(1)$ constant time complexity for "Next" and "Previous" navigation.
-* **Queue:** Utilized for **Watch History / Continue Watching**, managing the order of shows currently being watched by the user.
+  * `previous` points to the previous episode.
+  * Enables $O(1)$ constant time complexity for moving to the next or previous episode when the current episode is known.
+* **ArrayList:** Used to store the available shows so the user can switch between series.
 
 ---
 
 ## 🧱 2. Object-Oriented Design (OOD)
 
-The system is structured into 3 core classes:
+The system is structured into 4 core classes:
 
 * **`Episode` Class:** Stores individual episode details.
+  * `seasonNumber` (int)
   * `episodeNumber` (int)
   * `title` (String)
   * `duration` (int, e.g., 45 minutes)
   * `next` (Pointer to the next episode)
-  * `prev` (Pointer to the previous episode)
-* **`Show` Class:** Manages details for a specific series.
+  * `previous` (Pointer to the previous episode)
+* **`DoublyLinkedList` Class:** Stores the episodes for a show.
+  * `head` (Pointer to the first episode)
+  * `tail` (Pointer to the last episode)
+* **`Show` Class:** Manages details and playback for a specific series.
   * `showTitle` (String)
-  * `head` (Pointer to the first episode of the series)
-  * `currentEpisode` (Pointer to the episode currently playing)
-* **`NetflixSystem` Class:** Handles core logic, menu operations, and console UI rendering.
+  * `episodeList` (Doubly linked list of episodes)
+  * `currentEpisode` (Pointer to the episode currently selected)
+* **`NetflixSystem` Class:** Stores the available shows, handles menu operations, and renders the console UI.
 
 ---
 
 ## ⚙️ 3. Core Operations
 
-* `playShow(String showName)`: Selects a series and starts playback from the last watched episode or defaults to Episode 1.
-* `playNextEpisode()`: Immediately skips to the next episode (`currentEpisode = currentEpisode.next`).
-* `playPreviousEpisode()`: Reverts to the previous episode (`currentEpisode = currentEpisode.prev`).
-* `autoPlayTrigger()`: Simulates the end of an episode, initiates a 5-second countdown, and automatically calls `playNextEpisode()`.
-* `displayConsole()`: Renders the mock User Interface (UI) in the console.
+* `addEpisode(int seasonNumber, int episodeNumber, String title, int duration)`: Adds an episode to a show's doubly linked list. The first added episode becomes the current episode.
+* `playNextEpisode()`: Moves to the next episode (`currentEpisode = currentEpisode.next`) when one is available.
+* `playPreviousEpisode()`: Moves to the previous episode (`currentEpisode = currentEpisode.previous`) when one is available.
+* `selectEpisode(int seasonNum, int epNum)`: Searches for an episode by season and episode number, then selects it.
+* `autoPlayTrigger(Show show)`: Simulates finishing the current episode, starts a 5-second countdown, and then plays the next episode if one is available. This is triggered by choosing the corresponding menu option.
+* `displayConsole(Show show)`: Renders the mock User Interface (UI) in the console. The playback status time shown is illustrative and does not track real playback.
 
 ---
 
@@ -48,17 +53,18 @@ The system is structured into 3 core classes:
 ========================================
        NETFLIX - CONSOLE EDITION
 ========================================
-[Now Playing] Stranger Things: Season 1
-> Episode 2: "The Weirdo" (Duration: 52 mins)
+[Now Playing] Stranger Things
+> Season 1 Episode 1: "The Vanishing of Will Byers" (Duration: 49 mins)
 ----------------------------------------
-[Status]: Playing... [ 00:45 / 52:00 ]
-
---- Auto-play Next Episode in 5s ---
+[Status]: Playing... [ 00:45 / 49:00 ]
 
 Menu:
 1. Play Next Episode (>> Next)
 2. Play Previous Episode (<< Prev)
 3. Select Specific Episode
-4. Exit
+4. Change Series (Switch Show)
+5. [Simulate] Finish Episode (Trigger Auto-play)
+6. Exit
 ----------------------------------------
 Enter your choice:
+```
