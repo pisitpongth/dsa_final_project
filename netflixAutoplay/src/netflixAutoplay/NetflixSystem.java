@@ -31,6 +31,15 @@ public class NetflixSystem {
 		strangerThings.addEpisode(2, 7, "The Lost Sister", 45);
 		strangerThings.addEpisode(2, 8, "The Mind Flayer", 47);
 		strangerThings.addEpisode(2, 9, "The Gate", 62);
+		// Season 3 (8 ตอน)
+		strangerThings.addEpisode(3, 1, "Suzie, Do You Copy?", 51);
+		strangerThings.addEpisode(3, 2, "The Mall Rats", 50);
+		strangerThings.addEpisode(3, 3, "The Case of the Missing Lifeguard", 50);
+		strangerThings.addEpisode(3, 4, "The Sauna Test", 53);
+		strangerThings.addEpisode(3, 5, "The Flayed", 52);
+		strangerThings.addEpisode(3, 6, "E Pluribus Unum", 60);
+		strangerThings.addEpisode(3, 7, "The Bite", 55);
+		strangerThings.addEpisode(3, 8, "The Battle of Starcourt", 78);
 
 		allShows.add(strangerThings);
 
@@ -56,6 +65,15 @@ public class NetflixSystem {
 		invincible.addEpisode(2, 6, "It's Not That Simple", 45);
 		invincible.addEpisode(2, 7, "I'm Not Going Anywhere", 44);
 		invincible.addEpisode(2, 8, "I Thought You Were Stronger", 45);
+		// Season 3 (8 ตอน)
+		invincible.addEpisode(3, 1, "You're Not Laughing Now", 49);
+		invincible.addEpisode(3, 2, "A Deal with the Devil", 49);
+		invincible.addEpisode(3, 3, "You Want a Real Costume, Right?", 50);
+		invincible.addEpisode(3, 4, "You Were My Hero", 49);
+		invincible.addEpisode(3, 5, "This Was Supposed to Be Easy", 49);
+		invincible.addEpisode(3, 6, "All I Can Say Is I'm Sorry", 54);
+		invincible.addEpisode(3, 7, "What Have I Done?", 51);
+		invincible.addEpisode(3, 8, "I Thought You'd Never Shut Up", 46);
 
 		allShows.add(invincible);
 
