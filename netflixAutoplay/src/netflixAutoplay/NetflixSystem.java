@@ -1,12 +1,11 @@
 package netflixAutoplay;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class NetflixSystem {
 
 	public static void main(String[] args) {
-		ArrayList<Show> allShows = new ArrayList<>();
+		ArrayList allShows = new ArrayList();
 
 		// ==========================================
 		// Series 1 - Stranger Things

@@ -1,53 +1,39 @@
-# 🎬 Netflix Console Edition: Next Episode & Auto-Play System
+# Netflix Console Edition
 
-A console-based Netflix simulation project built to demonstrate the practical application of **Data Structures and Algorithms (DSA)** concepts, specifically focusing on **Doubly Linked Lists** for episode navigation and **ArrayLists** for managing the available shows.
+A simple Java program that looks like Netflix in the console. It lets users watch a list of shows, move between episodes, and choose an episode. The project shows how data structures can be used in a program.
 
----
+## Data Structures
 
-## 🏗️ 1. Suitable Data Structures
+### Doubly Linked List
 
-* **Doubly Linked List:** Used to represent the episodes in a TV series, where each node represents an "Episode."
-  * `next` points to the following episode.
-  * `previous` points to the previous episode.
-  * Enables $O(1)$ constant time complexity for moving to the next or previous episode when the current episode is known.
-* **ArrayList:** Used to store the available shows so the user can switch between series.
+Each show has a doubly linked list of episodes. Each episode has a link to the next episode and a link to the previous episode. This makes it easy to move forward or back when the current episode is known.
 
----
+### Custom ArrayList
 
-## 🧱 2. Object-Oriented Design (OOD)
+The program uses its own `ArrayList` class to store the shows. It starts with space for 10 shows. When it is full, it makes a larger array.
 
-The system is structured into 4 core classes:
+## Classes
 
-* **`Episode` Class:** Stores individual episode details.
-  * `seasonNumber` (int)
-  * `episodeNumber` (int)
-  * `title` (String)
-  * `duration` (int, e.g., 45 minutes)
-  * `next` (Pointer to the next episode)
-  * `previous` (Pointer to the previous episode)
-* **`DoublyLinkedList` Class:** Stores the episodes for a show.
-  * `head` (Pointer to the first episode)
-  * `tail` (Pointer to the last episode)
-* **`Show` Class:** Manages details and playback for a specific series.
-  * `showTitle` (String)
-  * `episodeList` (Doubly linked list of episodes)
-  * `currentEpisode` (Pointer to the episode currently selected)
-* **`NetflixSystem` Class:** Stores the available shows, handles menu operations, and renders the console UI.
+The project has five classes:
 
----
+* **`Episode`** stores the season number, episode number, title, duration in minutes, and links to the next and previous episodes.
+* **`DoublyLinkedList`** stores episodes. It has a `head` for the first episode and a `tail` for the last episode.
+* **`Show`** stores a show title, its episode list, and the current episode. It can add, select, and move between episodes.
+* **`ArrayList`** stores shows in an array. It can add a show, return a show by its position, and report the number of shows.
+* **`NetflixSystem`** starts the program, shows the menu, and handles the user's choices.
 
-## ⚙️ 3. Core Operations
+## Main Features
 
-* `addEpisode(int seasonNumber, int episodeNumber, String title, int duration)`: Adds an episode to a show's doubly linked list. The first added episode becomes the current episode.
-* `playNextEpisode()`: Moves to the next episode (`currentEpisode = currentEpisode.next`) when one is available.
-* `playPreviousEpisode()`: Moves to the previous episode (`currentEpisode = currentEpisode.previous`) when one is available.
-* `selectEpisode(int seasonNum, int epNum)`: Searches for an episode by season and episode number, then selects it.
-* `autoPlayTrigger(Show show)`: Simulates finishing the current episode, starts a 5-second countdown, and then plays the next episode if one is available. This is triggered by choosing the corresponding menu option.
-* `displayConsole(Show show)`: Renders the mock User Interface (UI) in the console. The playback status time shown is illustrative and does not track real playback.
+* **Add episodes:** Episodes are added to the end of a show's list. The first episode added becomes the current episode.
+* **Play next or previous:** The program moves to the next or previous episode when one is available. At the start or end of the list, it shows a message.
+* **Select an episode:** The user can enter a season number and an episode number. The program searches for that episode.
+* **Change shows:** The user can choose a show from the list.
+* **Auto-play demo:** The user can choose the finish episode option. The program shows a 5-second countdown, then moves to the next episode. If there is no next episode, it shows a message.
+* **Console display:** The program shows the current show, episode, duration, and menu. The time shown in the status line is an example only. It does not measure real playback time.
 
----
+## How to Use
 
-## 🖥️ 4. Console UI Design
+Run `NetflixSystem`. Choose a menu number and follow the prompts.
 
 ```text
 ========================================
