@@ -1,9 +1,19 @@
 package netflixAutoplay;
 
+/**
+ * Data structure: Doubly Linked List of episodes for one show.
+ * currentEpisode points to the episode that is playing now.
+ *
+ * Algorithms:
+ * - addEpisode: add at the end of the list, O(1)
+ * - playNext / playPrevious: move the pointer to next or previous, O(1)
+ * - selectEpisode: linear search for a season and episode number, O(n)
+ * - getEpisodeCount: walk the list and count, O(n)
+ */
 public class Show {
-	String showTitle;
-	DoublyLinkedList episodeList;
-	Episode currentEpisode;
+	private String showTitle;
+	private DoublyLinkedList episodeList;
+	private Episode currentEpisode;
 
 	public Show(String showTitle) {
 		this.showTitle = showTitle;
@@ -11,7 +21,22 @@ public class Show {
 		this.currentEpisode = null;
 	}
 
-	// Include the season number.
+	public String getShowTitle() {
+		return showTitle;
+	}
+
+	public Episode getCurrentEpisode() {
+		return currentEpisode;
+	}
+
+	public int getEpisodeCount() {
+		return episodeList.size();
+	}
+
+	public boolean hasNextEpisode() {
+		return currentEpisode != null && currentEpisode.getNext() != null;
+	}
+
 	public void addEpisode(int seasonNumber, int episodeNumber, String title, int duration) {
 		Episode newEp = new Episode(seasonNumber, episodeNumber, title, duration);
 		episodeList.addEpisode(newEp);
@@ -20,37 +45,31 @@ public class Show {
 		}
 	}
 
-	public void playNextEpisode() {
-		if (currentEpisode != null && currentEpisode.next != null) {
-			currentEpisode = currentEpisode.next;
-			System.out.println("\n>> [System] Playing the next episode: S" + currentEpisode.seasonNumber + " EP"
-					+ currentEpisode.episodeNumber);
-		} else {
-			System.out.println("\n>> [System] Notice: This is the last episode of the series! (End of List)");
+	// Move to the next episode using the next link. No full-list search.
+	public boolean playNextEpisode() {
+		if (hasNextEpisode()) {
+			currentEpisode = currentEpisode.getNext();
+			return true;
 		}
+		return false;
 	}
 
-	public void playPreviousEpisode() {
-		if (currentEpisode != null && currentEpisode.previous != null) {
-			currentEpisode = currentEpisode.previous;
-			System.out.println("\n>> [System] Going back to the previous episode: S" + currentEpisode.seasonNumber + " EP"
-					+ currentEpisode.episodeNumber);
-		} else {
-			System.out.println("\n>> [System] Notice: This is the first episode; cannot go back any further!");
+	// Move back using the previous link.
+	public boolean playPreviousEpisode() {
+		if (currentEpisode != null && currentEpisode.getPrevious() != null) {
+			currentEpisode = currentEpisode.getPrevious();
+			return true;
 		}
+		return false;
 	}
 
-	// Find an episode by season and episode number.
-	public void selectEpisode(int seasonNum, int epNum) {
-		Episode temp = episodeList.head;
-		while (temp != null) {
-			if (temp.seasonNumber == seasonNum && temp.episodeNumber == epNum) {
-				currentEpisode = temp;
-				System.out.println("\n>> [System] Successfully selected S" + seasonNum + " EP" + epNum);
-				return;
-			}
-			temp = temp.next;
+	// Linear search: find the episode by season number and episode number.
+	public boolean selectEpisode(int seasonNum, int epNum) {
+		Episode found = episodeList.find(seasonNum, epNum);
+		if (found != null) {
+			currentEpisode = found;
+			return true;
 		}
-		System.out.println("\n>> [System] Error: S" + seasonNum + " EP" + epNum + " was not found");
+		return false;
 	}
 }
