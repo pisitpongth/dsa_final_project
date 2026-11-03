@@ -8,19 +8,21 @@ A simple Java program that looks like Netflix in the console. It lets users watc
 
 Each show has a doubly linked list of episodes. Each episode has a link to the next episode and a link to the previous episode. This makes it easy to move forward or back when the current episode is known.
 
-### Custom ArrayList
+### Dynamic Array (`ShowList`)
 
-The program uses its own `ArrayList` class to store the shows. It starts with space for 10 shows. When it is full, it makes a larger array.
+The program uses its own `ShowList` class to store the shows. It starts with space for 10 shows. When it is full, it makes a new array that is 2 times bigger and copies the old shows into it.
 
 ## Classes
 
-The project has five classes:
+The project has seven classes:
 
 * **`Episode`** stores the season number, episode number, title, duration in minutes, and links to the next and previous episodes.
-* **`DoublyLinkedList`** stores episodes. It has a `head` for the first episode and a `tail` for the last episode.
+* **`DoublyLinkedList`** stores episodes. It has a `head` for the first episode and a `tail` for the last episode. It can add an episode at the end, count the episodes, and find an episode.
 * **`Show`** stores a show title, its episode list, and the current episode. It can add, select, and move between episodes.
-* **`ArrayList`** stores shows in an array. It can add a show, return a show by its position, and report the number of shows.
-* **`NetflixSystem`** starts the program, shows the menu, and handles the user's choices.
+* **`ShowList`** stores shows in an array. It can add a show, return a show by its position, and report the number of shows.
+* **`Catalog`** loads the starting shows. It adds Stranger Things and Invincible, with their episodes, into a `ShowList`.
+* **`ConsoleUI`** prints the screen, the menu, and the system messages. It also runs the 5-second auto-play countdown.
+* **`NetflixSystem`** starts the program, reads the user's choice, and calls the matching action.
 
 ## Main Features
 
@@ -55,6 +57,6 @@ Menu:
 Enter your choice:
 ```
 ## Contributors
-* นายพิสิฐพงศ์ ชัยฤกษ์ 2513510095
-* นายฑีนรุจิ์ ชูชมชื่น 2513510053
-* นางสาวณัฐฐินันท์ ทะเรรัมย์ 2513510061
+* นายพิสิฐพงศ์ ชัยฤกษ์ 2513510095 — [pisitpongth](https://github.com/pisitpongth)
+* นายฑีนรุจิ์ ชูชมชื่น 2513510053 — [Teenaruj](https://github.com/Teenaruj)
+* นางสาวณัฐฐินันท์ ทะเรรัมย์ 2513510061 — [dbns02](https://github.com/dbns02)
